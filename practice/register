@@ -1,0 +1,16 @@
+module shift_register_4bit (
+    input wire clk,
+    input wire rst_n,
+    input wire din,
+    output reg [3:0] dout
+);
+
+  always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+      dout <= 4'b0000;
+    end else begin
+      dout <= {dout[2:0], din};
+    end
+  end
+
+endmodule
