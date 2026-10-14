@@ -1,0 +1,10 @@
+module multiplier_8bit (
+    input [7:0] a,          // Multiplicand (8-bit)
+    input [7:0] b,          // Multiplier (8-bit)
+    output [15:0] product   // Product output (16-bit)
+);
+
+    // Continuous assignment handles the full 16-bit multiplication
+    assign product = a * b;
+
+endmodule
