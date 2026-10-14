@@ -4,7 +4,7 @@ module multiplier (
     output [7:0] product    // Product output (8-bit)
 );
 
-    // Continuous assignment using the multiplication operator
+   
     assign product = a * b;
 
 endmodule
