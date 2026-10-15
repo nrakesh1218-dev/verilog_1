@@ -1,0 +1,27 @@
+`timescale 1ns / 1ps
+
+module tb_downcounter;
+
+    reg clk;
+    reg rst;
+    wire [3:0] q;
+
+    downcounter uut (
+        .clk(clk), 
+        .rst(rst), 
+        .q(q)
+    );
+
+    initial begin
+        clk = 1'b0;
+        forever #5 clk = ~clk;
+    end
+
+    initial begin
+        rst = 1'b1; #12;
+        rst = 1'b0; #100;
+        rst = 1'b1; #15;
+        rst = 1'b0; #50;
+    end
+
+endmodule
