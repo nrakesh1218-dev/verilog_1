@@ -1,0 +1,30 @@
+`timescale 1ns / 1ps
+
+module t_flipflop_tb;
+    reg clk;
+    reg rst;
+    reg t;
+    wire q;
+
+    t_flipflop uut (
+        .clk(clk), 
+        .rst(rst), 
+        .t(t), 
+        .q(q)
+    );
+
+    initial begin
+        clk = 1'b0;
+        forever #5 clk = ~clk;
+    end
+
+    initial begin
+        $dumpfile("t_flipflop.vcd");
+        $dumpvars(0, t_flipflop_tb);
+
+        rst = 1'b1; t = 1'b0; #12;
+        rst = 1'b0; t = 1'b1; #20;
+        t = 1'b0; #15;
+        t = 1'b1; #20;
+    end
+endmodule
