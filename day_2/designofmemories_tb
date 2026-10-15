@@ -1,0 +1,22 @@
+`timescale 1ns / 1ps
+
+module rom_memory_tb;
+    reg [3:0] addr;
+    wire [7:0] dout;
+
+    rom_memory uut (
+        .addr(addr),
+        .dout(dout)
+    );
+
+    initial begin
+        $dumpfile("rom_memory.vcd");
+        $dumpvars(0, rom_memory_tb);
+
+        addr = 4'd0;  #10;
+        addr = 4'd3;  #10;
+        addr = 4'd5;  #10;
+        addr = 4'd10; #10;
+        addr = 4'd15; #10;
+    end
+endmodule
