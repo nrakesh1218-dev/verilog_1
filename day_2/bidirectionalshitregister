@@ -1,0 +1,18 @@
+`timescale 1ns / 1ps
+
+module bidirectional_shift_register (
+    input clk,
+    input rst,
+    input dir, // 1: shift right, 0: shift left
+    input si,
+    output reg [3:0] po
+);
+    always @(posedge clk or posedge rst) begin
+        if (rst)
+            po <= 4'b0000;
+        else if (dir)
+            po <= {si, po[3:1]};
+        else
+            po <= {po[2:0], si};
+    end
+endmodule
