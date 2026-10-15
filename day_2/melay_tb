@@ -1,0 +1,37 @@
+`timescale 1ns / 1ps
+
+module mealy_sequence_detector_11_tb;
+    reg clk;
+    reg rst;
+    reg in;
+    wire detected;
+
+    mealy_sequence_detector_11 uut (
+        .clk(clk),
+        .rst(rst),
+        .in(in),
+        .detected(detected)
+    );
+
+    initial begin
+        clk = 1'b0;
+        forever #5 clk = ~clk;
+    end
+
+    initial begin
+        $dumpfile("mealy_sequence_detector_11.vcd");
+        $dumpvars(0, mealy_sequence_detector_11_tb);
+
+        rst = 1'b1; in = 1'b0; #12;
+        rst = 1'b0;
+
+        // Sequence pattern test: looking for consecutive "11"
+        in = 1'b0; #10;
+        in = 1'b1; #10;
+        in = 1'b0; #10;
+        in = 1'b1; #10;
+        in = 1'b1; #10; // Detected here on clock edge for second '1'
+        in = 1'b1; #10; // Detected here again (overlapping)
+        in = 1'b0; #10;
+    end
+endmodule
