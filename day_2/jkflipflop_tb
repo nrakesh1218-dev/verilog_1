@@ -1,0 +1,34 @@
+`timescale 1ns / 1ps
+
+module jk_flipflop_tb;
+    reg clk;
+    reg rst;
+    reg j;
+    reg k;
+    wire q;
+
+    jk_flipflop uut (
+        .clk(clk), 
+        .rst(rst), 
+        .j(j), 
+        .k(k), 
+        .q(q)
+    );
+
+    initial begin
+        clk = 1'b0;
+        forever #5 clk = ~clk;
+    end
+
+    initial begin
+        $dumpfile("jk_flipflop.vcd");
+        $dumpvars(0, jk_flipflop_tb);
+
+        rst = 1'b1; j = 1'b0; k = 1'b0; #12;
+        rst = 1'b0; j = 1'b0; k = 1'b0; #10;
+        j = 1'b0; k = 1'b1; #10;
+        j = 1'b1; k = 1'b0; #10;
+        j = 1'b1; k = 1'b1; #10;
+        j = 1'b0; k = 1'b0; #10;
+    end
+endmodule
