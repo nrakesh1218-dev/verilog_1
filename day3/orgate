@@ -1,0 +1,7 @@
+moodule or_gate (
+input a,
+input ,
+output y,
+);
+assign Y=a|b;
+end module
