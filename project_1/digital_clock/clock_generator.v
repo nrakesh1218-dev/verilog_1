@@ -11,6 +11,7 @@ else if (sec<59)
     sec <=sec+1;
 else if (min <59)
     min <= min+1;
+    sec <=0;5
 else begin
     sec =0;
      min =0;
