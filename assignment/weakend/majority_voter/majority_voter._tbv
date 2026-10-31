@@ -1,0 +1,17 @@
+module tb_majority_voter;
+    reg [4:0] in;
+    wire majority;
+
+    majority_voter uut (
+        .in(in),
+        .majority(majority)
+    );
+
+    initial begin
+        in = 5'b00000; #10;
+        in = 5'b00101; #10;
+        in = 5'b01110; #10;
+        in = 5'b11111; #10;
+        $finish;
+    end
+endmodule
