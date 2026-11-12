@@ -1,26 +1,3 @@
-module module diamond_gen(
-input clk,
-input rst,
-output reg [3:0] n,
-output reg dir,
-output reg done
-);
-always @(posedge clk) begin
-if (rst) begin
-n <= 4'd1;
-dir <= 1'b1;
-done <= 1'b0;
-end else if (!done) begin
-if (dir) begin
-if (n == 4'd5) begindir <= 1'bn <= 4'd4;
-end else n <= n + 1;
-end else begin
-if (n == 4'd1) done <= 1'b1;
-else n <= n - 1;
-end
-end
-end
-endmodule
 
 module diamond_tb;
 reg clk, rst;  wire [3:0] n;
